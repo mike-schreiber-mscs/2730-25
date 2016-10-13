@@ -16,7 +16,7 @@ Public Class frmMain
 
     Private Sub btnCalculateAnd_Click(sender As Object, e As EventArgs) Handles btnCalculateAnd.Click
         'calculates free shipping if Savannah credit card is  used and if order amount >100
-
+        'test
         Dim dblShippingAmount As Double
         Dim dblOrderAmount As Double
         Dim strCreditCardUsed As String
