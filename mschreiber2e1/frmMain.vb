@@ -16,7 +16,7 @@ Public Class frmMain
 
     Private Sub btnCalculateAnd_Click(sender As Object, e As EventArgs) Handles btnCalculateAnd.Click
         'calculates free shipping if Savannah credit card is  used and if order amount >100
-        'test
+
         Dim dblShippingAmount As Double
         Dim dblOrderAmount As Double
         Dim strCreditCardUsed As String
@@ -56,5 +56,52 @@ Public Class frmMain
             dblShippingAmount = 0
             lblShippingAmount.Text = dblShippingAmount.ToString("C2")
         End If
+    End Sub
+
+    Private Sub btnCalculateEqual_Click(sender As Object, e As EventArgs) Handles btnCalculateEqual.Click
+        'this will calculate a salesperson's monthly commission amount, if monthly sales amount is = or > than 25000 and commission id = a1 b2 or c3
+
+        Dim strID As String
+        Dim dblMonthlySales As Double
+        Dim dblCommission As Double
+
+        Double.TryParse(txtSales.Text, dblMonthlySales)
+        strID = txtID.Text
+
+
+        If (strID.ToUpper = "A1" OrElse strID.ToUpper = "B2" OrElse strID.ToUpper = "C3") AndAlso
+                (dblMonthlySales = 25000 OrElse dblMonthlySales > 25000) Then
+            dblCommission = 0.15
+            lblCommissionAmount.Text = dblCommission.ToString("P2")
+        Else
+            dblCommission = 0.12
+            lblCommissionAmount.Text = dblCommission.ToString("P2")
+        End If
+    End Sub
+
+    Private Sub btnCalculateNotEqual_Click(sender As Object, e As EventArgs) Handles btnCalculateNotEqual.Click
+        'this will calculate a salesperson's monthly commission amount, if monthly sales amount and commission id not equalling A1, B2, C3 or less than 25000 
+
+        Dim strID As String
+        Dim dblMonthlySales As Double
+        Dim dblCommission As Double
+
+        Double.TryParse(txtSales.Text, dblMonthlySales)
+        strID = txtID.Text
+
+
+        If (strID.ToUpper <> "A1" AndAlso strID.ToUpper <> "B2" AndAlso strID.ToUpper <> "C3") OrElse
+                dblMonthlySales < 25000 Then
+            dblCommission = 0.12
+            lblCommissionAmount.Text = dblCommission.ToString("P2")
+        Else
+            dblCommission = 0.15
+            lblCommissionAmount.Text = dblCommission.ToString("P2")
+        End If
+    End Sub
+
+    Private Sub ClearLabels2(sender As Object, e As EventArgs) _
+        Handles txtID.TextChanged, txtSales.TextChanged
+        lblCommissionAmount.Text = String.Empty
     End Sub
 End Class
