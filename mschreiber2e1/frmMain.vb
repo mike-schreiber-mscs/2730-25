@@ -102,6 +102,7 @@ Public Class frmMain
 
     Private Sub ClearLabels2(sender As Object, e As EventArgs) _
         Handles txtID.TextChanged, txtSales.TextChanged
+        'this will clear the commission amount result lable if new values are entered in the text boxes
         lblCommissionAmount.Text = String.Empty
     End Sub
 End Class
