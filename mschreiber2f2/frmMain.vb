@@ -14,13 +14,17 @@ Public Class frmMain
 
     Private Sub ClearLabels(sender As Object, e As EventArgs) _
         Handles txtRooms.TextChanged, txtNights.TextChanged,
-        txtAdults.TextChanged, txtChildren.TextChanged
+        txtAdults.TextChanged, txtChildren.TextChanged, radAtrium.CheckedChanged, radKing.CheckedChanged, radStand.CheckedChanged,
+        radQueen.CheckedChanged, chkParkingFee.CheckedChanged
         ' clear calculated amounts
 
         lblRoomChg.Text = String.Empty
-        lblTax.Text = String.Empty
-        lblResortFee.Text = String.Empty
-        lblTotalDue.Text = String.Empty
+        lblTaxChg.Text = String.Empty
+        lblResortFeeChg.Text = String.Empty
+        lblTotalAmountDue.Text = String.Empty
+        lblParkingChg.Text = String.Empty
+
+
     End Sub
 
     Private Sub btnCalc_Click(sender As Object, e As EventArgs) Handles btnCalc.Click
@@ -28,16 +32,23 @@ Public Class frmMain
         'tax, total resort fee, and total due
 
         Const intMaxPerRoom As Integer = 6
-        Const dblDailyRoomCharge As Double = 225.5
+        Const dblDaily_Room_Chg_Queen_Stand As Double = 225.5
+        Const dblDaily_Room_Chg_Queen_Atrium As Double = 275.0
+        Const dblDaily_Room_Chg_King_Stand As Double = 245.5
+        Const dblDaily_Room_Chg_King_Atrium As Double = 325
+        Const dblDaily_Parking_Fee As Double = 8.5
         Const dblTaxRate As Double = 0.1625
         Const dblResortFee As Double = 12.5
         Const strMSG As String = "You have exceeded the maximum number of guests per room"
+
         Dim intRoomsReserved As Integer
         Dim intNights As Integer
         Dim intAdults As Integer
         Dim intChildren As Integer
         Dim intNumGuests As Integer
         Dim dblRoomsRequired As Double
+        Dim dblParkingFee As Double
+        Dim dblDailyRoomCharge As Double
         Dim dblTotalRoomCharge As Double
         Dim dblTax As Double
         Dim dblTotalResortFee As Double
@@ -65,22 +76,40 @@ Public Class frmMain
                             MessageBoxIcon.Information)
         Else
             'calculate charges
-            dblTotalRoomCharge = intRoomsReserved *
+            If radQueen.Checked Then
+                If radStand.Checked Then
+                    dblDailyRoomCharge = dblDaily_Room_Chg_Queen_Stand
+                Else
+                    dblDailyRoomCharge = dblDaily_Room_Chg_Queen_Atrium
+                End If
+            Else
+                If radStand.Checked Then
+                    dblDailyRoomCharge = dblDaily_Room_Chg_King_Stand
+                Else
+                    dblDailyRoomCharge = dblDaily_Room_Chg_King_Atrium
+                End If
+            End If
+                dblTotalRoomCharge = intRoomsReserved *
                 intNights * dblDailyRoomCharge
 
-            dblTax = dblTotalRoomCharge * dblTaxRate
+                dblTax = dblTotalRoomCharge * dblTaxRate
 
             dblTotalResortFee = intRoomsReserved *
-                intNights * dblDailyRoomCharge
+                intNights * dblResortFee
 
-            dblTotalDue = dblTotalResortFee +
-                dblTax + dblTotalResortFee
+            If chkParkingFee.Checked Then
+                dblParkingFee = intNights * dblDaily_Parking_Fee
+            End If
+
+            dblTotalDue = dblTotalRoomCharge +
+                dblTax + dblTotalResortFee + dblParkingFee
 
             'display charges
             lblRoomChg.Text = dblTotalRoomCharge.ToString("n2")
-            lblTax.Text = dblTax.ToString("n2")
-            lblResortFee.Text = dblTotalResortFee.ToString("n2")
-            lblTotalDue.Text = dblTotalDue.ToString("c2")
+            lblTaxChg.Text = dblTax.ToString("n2")
+            lblResortFeeChg.Text = dblTotalResortFee.ToString("n2")
+            lblTotalAmountDue.Text = dblTotalDue.ToString("c2")
+            lblParkingChg.Text = dblParkingFee.ToString("c2")
         End If
     End Sub
 
