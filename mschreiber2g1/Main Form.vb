@@ -42,7 +42,7 @@ Public Class frmMain
             dblRate = 0.03
         End If
 
-        If intQuantity < 20 AndAlso intQuantity > 15 Then
+        If intQuantity <= 20 AndAlso intQuantity > 15 Then
             dblRate = 0.025
         End If
 
@@ -51,8 +51,8 @@ Public Class frmMain
         End If
 
         If intQuantity > 0 AndAlso intQuantity < 10 Then
-                dblRate = 0.00
-            End If
+            dblRate = 0.00
+        End If
 
 
 
@@ -115,6 +115,78 @@ Public Class frmMain
         dblTotalDue = dblTotalWithoutDiscount - dblDiscount
 
         lblDiscountAmount.Text = dblDiscount.ToString("C2")
-                    lblTotalAmountDue.Text = dblTotalDue.ToString("C2")
+        lblTotalAmountDue.Text = dblTotalDue.ToString("C2")
+    End Sub
+
+    Private Sub btnCalcIfElseIf_Click(sender As Object, e As EventArgs) Handles btnCalcIfElseIf.Click
+        ' calculate discount and total due
+
+        Dim dblPrice As Double
+        Dim intQuantity As Integer
+        Dim dblRate As Double = 0.0
+        Dim dblTotalWithoutDiscount As Double
+        Dim dblDiscount As Double
+        Dim dblTotalDue As Double
+
+        Double.TryParse(txtPrice.Text, dblPrice)
+        Integer.TryParse(txtQuantity.Text, intQuantity)
+
+        If intQuantity > 20 Then
+            dblRate = 0.03
+
+        ElseIf intQuantity > 15 Then
+            dblRate = 0.025
+
+        ElseIf intQuantity > 10 Then
+            dblRate = 0.02
+
+        ElseIf intQuantity > 0 AndAlso intQuantity < 10 Then
+            dblRate = 0.00
+        End If
+
+
+
+        dblTotalWithoutDiscount = dblPrice * intQuantity
+        dblDiscount = dblTotalWithoutDiscount * dblRate
+        dblTotalDue = dblTotalWithoutDiscount - dblDiscount
+
+        lblDiscountAmount.Text = dblDiscount.ToString("C2")
+        lblTotalAmountDue.Text = dblTotalDue.ToString("C2")
+    End Sub
+
+    Private Sub btnCalcSelect_Click(sender As Object, e As EventArgs) Handles btnCalcSelect.Click
+        ' calculate discount and total due
+
+        Dim dblPrice As Double
+        Dim intQuantity As Integer
+        Dim dblRate As Double = 0.0
+        Dim dblTotalWithoutDiscount As Double
+        Dim dblDiscount As Double
+        Dim dblTotalDue As Double
+
+        Double.TryParse(txtPrice.Text, dblPrice)
+        Integer.TryParse(txtQuantity.Text, intQuantity)
+
+        Select Case intQuantity
+            Case 0 To 10
+                dblRate = 0.0
+
+            Case 11 To 15
+                dblRate = 0.02
+
+            Case 16 To 20
+                dblRate = 0.025
+
+            Case > 20
+                dblRate = 0.03
+        End Select
+
+
+        dblTotalWithoutDiscount = dblPrice * intQuantity
+        dblDiscount = dblTotalWithoutDiscount * dblRate
+        dblTotalDue = dblTotalWithoutDiscount - dblDiscount
+
+        lblDiscountAmount.Text = dblDiscount.ToString("C2")
+        lblTotalAmountDue.Text = dblTotalDue.ToString("C2")
     End Sub
 End Class

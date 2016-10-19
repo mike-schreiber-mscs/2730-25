@@ -36,10 +36,10 @@ Partial Class frmMain
         Me.btnCalcIfElseIf = New System.Windows.Forms.Button()
         Me.btnCalcSelect = New System.Windows.Forms.Button()
         Me.grpBoxRates = New System.Windows.Forms.GroupBox()
-        Me.lbl1to10 = New System.Windows.Forms.Label()
-        Me.lbl11to15 = New System.Windows.Forms.Label()
-        Me.lbl16to20 = New System.Windows.Forms.Label()
         Me.lblGreaterThan20 = New System.Windows.Forms.Label()
+        Me.lbl16to20 = New System.Windows.Forms.Label()
+        Me.lbl11to15 = New System.Windows.Forms.Label()
+        Me.lbl1to10 = New System.Windows.Forms.Label()
         Me.grpBoxSamples = New System.Windows.Forms.GroupBox()
         Me.lbl9Dollar = New System.Windows.Forms.Label()
         Me.lbl5Dollar = New System.Windows.Forms.Label()
@@ -185,23 +185,14 @@ Partial Class frmMain
         Me.grpBoxRates.TabStop = False
         Me.grpBoxRates.Text = "Discount Rates"
         '
-        'lbl1to10
+        'lblGreaterThan20
         '
-        Me.lbl1to10.AutoSize = True
-        Me.lbl1to10.Location = New System.Drawing.Point(6, 23)
-        Me.lbl1to10.Name = "lbl1to10"
-        Me.lbl1to10.Size = New System.Drawing.Size(90, 20)
-        Me.lbl1to10.TabIndex = 0
-        Me.lbl1to10.Text = "1 - 10:     0%"
-        '
-        'lbl11to15
-        '
-        Me.lbl11to15.AutoSize = True
-        Me.lbl11to15.Location = New System.Drawing.Point(6, 50)
-        Me.lbl11to15.Name = "lbl11to15"
-        Me.lbl11to15.Size = New System.Drawing.Size(91, 20)
-        Me.lbl11to15.TabIndex = 1
-        Me.lbl11to15.Text = "11 - 15    2%"
+        Me.lblGreaterThan20.AutoSize = True
+        Me.lblGreaterThan20.Location = New System.Drawing.Point(6, 104)
+        Me.lblGreaterThan20.Name = "lblGreaterThan20"
+        Me.lblGreaterThan20.Size = New System.Drawing.Size(90, 20)
+        Me.lblGreaterThan20.TabIndex = 3
+        Me.lblGreaterThan20.Text = "> 20:       3%"
         '
         'lbl16to20
         '
@@ -212,14 +203,23 @@ Partial Class frmMain
         Me.lbl16to20.TabIndex = 2
         Me.lbl16to20.Text = "16 - 20    2.5%"
         '
-        'lblGreaterThan20
+        'lbl11to15
         '
-        Me.lblGreaterThan20.AutoSize = True
-        Me.lblGreaterThan20.Location = New System.Drawing.Point(6, 104)
-        Me.lblGreaterThan20.Name = "lblGreaterThan20"
-        Me.lblGreaterThan20.Size = New System.Drawing.Size(90, 20)
-        Me.lblGreaterThan20.TabIndex = 3
-        Me.lblGreaterThan20.Text = "> 20:       3%"
+        Me.lbl11to15.AutoSize = True
+        Me.lbl11to15.Location = New System.Drawing.Point(6, 50)
+        Me.lbl11to15.Name = "lbl11to15"
+        Me.lbl11to15.Size = New System.Drawing.Size(91, 20)
+        Me.lbl11to15.TabIndex = 1
+        Me.lbl11to15.Text = "11 - 15    2%"
+        '
+        'lbl1to10
+        '
+        Me.lbl1to10.AutoSize = True
+        Me.lbl1to10.Location = New System.Drawing.Point(6, 23)
+        Me.lbl1to10.Name = "lbl1to10"
+        Me.lbl1to10.Size = New System.Drawing.Size(90, 20)
+        Me.lbl1to10.TabIndex = 0
+        Me.lbl1to10.Text = "1 - 10:     0%"
         '
         'grpBoxSamples
         '
