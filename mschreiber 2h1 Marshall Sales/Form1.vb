@@ -97,7 +97,7 @@ Public Class frmMain
 
     Private Sub btnNestedIf_Click(sender As Object, e As EventArgs) Handles btnNestedIf.Click
         'this will calculate the total owed to salesperson using nested if then statements
-        'DEBUG THIS SECTION (THE 6001 AND ABOVE DOES NOT WORK ASK PETER!)
+
         Dim dblSales As Double
         Dim dblCommOnlyAmt As Double = 0.0
         Dim dblAddAmt As Double = 0.0
@@ -113,37 +113,38 @@ Public Class frmMain
         If Not blnIsSalesOk Then
             MessageBox.Show("Invalid input", "Number Format Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
         Else
-
             If dblSales > 30000 Then
                 dblCommOnlyAmt = 3120 + (dblSales - 30000) * 0.14
             Else
                 If dblSales > 6000 Then
-                    dblCommOnlyAmt = 120 + (dblSales - 6000) * 0.13
+                dblCommOnlyAmt = 120 + (dblSales - 6000) * 0.13
+            Else
+                If dblSales >= 1 Then
+                    dblCommOnlyAmt = dblSales * 0.1
                 Else
-                    If dblSales >= 1 Then
-                        dblCommOnlyAmt = dblSales * 0.1
-                    Else
-                        If dblSales < 1 Then
-                            dblCommOnlyAmt = 0.0
-                        End If
+                    If dblSales < 1 Then
+                        dblCommOnlyAmt = 0.0
                     End If
-
-                    If chkBox10Years.Checked Then
-                        dblAddAmt = dblAddAmt + 500
-                    End If
-
-                    If chkBoxTravel.Checked Then
-                        dblAddAmt = dblAddAmt + 700
-                    End If
-
-                    dblTotCommAmt = dblAddAmt + dblCommOnlyAmt
-
-                    lblCommOnlyAmt.Text = dblCommOnlyAmt.ToString("C2")
-                    lblAddAmt.Text = dblAddAmt.ToString("C2")
-                    lblTotCommAmt.Text = dblTotCommAmt.ToString("C2")
                 End If
             End If
         End If
+
+        If chkBox10Years.Checked Then
+                    dblAddAmt = dblAddAmt + 500
+                End If
+
+                If chkBoxTravel.Checked Then
+                    dblAddAmt = dblAddAmt + 700
+                End If
+
+                dblTotCommAmt = dblAddAmt + dblCommOnlyAmt
+
+                lblCommOnlyAmt.Text = dblCommOnlyAmt.ToString("C2")
+                lblAddAmt.Text = dblAddAmt.ToString("C2")
+                lblTotCommAmt.Text = dblTotCommAmt.ToString("C2")
+
+            End If
+
     End Sub
 
     Private Sub btnIfElseIf_Click(sender As Object, e As EventArgs) Handles btnIfElseIf.Click
