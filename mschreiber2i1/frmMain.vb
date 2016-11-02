@@ -34,15 +34,28 @@ Public Class frmMain
         strState = strState.Trim
         lbl05b.Text = strState
 
-        '05c Remove / insert START HERE
-
-
-
-
+        '05c Remove / insert
+        Dim strWord2 As String = txtBox05c.Text
+        strWord2 = strWord2.Remove(1, 1)
+        strWord2 = strWord2.Insert(1, "rit")
+        lbl05c.Text = strWord2
 
         '05d Insert
+        Dim strWord3 As String = txtBox05d.Text
+        strWord3 = strWord3.Insert(0, "Mon")
+        lbl05d.Text = strWord3
+
         '05e Pad
-        '06 Remove
+        Dim strPay As String
+        Dim dblPay As Double
+        Double.TryParse(txtBox05e.Text, dblPay)
+        strPay = dblPay.ToString("N2").PadLeft(10, "*"c)
+        lbl05e.Text = strPay
+
+        '06 Remove START HERE
+
+
+
         '07 Contains
         '12 Len/Remove
         '13 Like
