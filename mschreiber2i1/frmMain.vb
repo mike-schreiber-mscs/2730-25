@@ -93,11 +93,15 @@ Public Class frmMain
         lbl12.Text = strTaxRate
 
         '13 Like
+        Dim strZipCode As String = txtBox13.Text
 
+        If strZipCode Like "605##" Then
+            lbl13.Text = "Shipping $25"
 
-
-
-
-
+        ElseIf strZipCode Like "606##" Then
+            lbl13.Text = "Shipping $30"
+        Else
+            lbl13.Text = "Invalid Zip"
+        End If
     End Sub
 End Class
