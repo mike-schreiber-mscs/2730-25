@@ -244,7 +244,7 @@ Partial Class frmMain
         Me.txtBox12.Name = "txtBox12"
         Me.txtBox12.Size = New System.Drawing.Size(100, 20)
         Me.txtBox12.TabIndex = 21
-        Me.txtBox12.Text = "5%"
+        Me.txtBox12.Text = "5.0 %"
         '
         'txtBox13
         '
