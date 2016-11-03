@@ -236,7 +236,7 @@ Partial Class frmMain
         Me.txtBox07.Name = "txtBox07"
         Me.txtBox07.Size = New System.Drawing.Size(100, 20)
         Me.txtBox07.TabIndex = 20
-        Me.txtBox07.Text = "308 JEfFRsOn STreeT"
+        Me.txtBox07.Text = "308 JEfFERsOn STreeT"
         '
         'txtBox12
         '

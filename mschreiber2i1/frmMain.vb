@@ -67,35 +67,30 @@ Public Class frmMain
 
 
         '07 Contains
-        'Dim strAddress As String = txtBox07.Text
-        'Dim blnIsContained As Boolean
+        Dim strAddress As String = txtBox07.Text
+        Dim blnIsContained As Boolean
 
-        'blnIsContained = strAddress.ToUpper.Contains("Jefferson Street")
+        blnIsContained = strAddress.ToUpper.Contains("JEFFERSON STREET")
 
-        'If blnIsContained = strAddress.ToUpper.Contains("Jefferson Street") Then
-        '    lbl07.Text = "True"
-        'Else
-        '    lbl07.Text = "False"
-        'End If
-
-
+        If blnIsContained = True Then
+            lbl07.Text = "ST Found"
+        Else
+            lbl07.Text = "ST Not Found"
+        End If
 
 
         '12 Len/Remove
-        'Dim strTaxRate As String = txtBox12.Text
-        'Dim dblTaxRate As Double
-        'Dim intNumChar As Integer
+        Dim strTaxRate As String = txtBox12.Text
+        Dim dblTaxRate As Double
+        Dim intNumChar As Integer
 
-        'intNumChar = strTaxRate.Length
-        'strTaxRate = strTaxRate.Remove(3, 2)
+        intNumChar = strTaxRate.Length
+        strTaxRate = strTaxRate.Remove(intNumChar - 2, 2)
 
-        'Double.TryParse(strTaxRate, dblTaxRate)
-        'dblTaxRate = (dblTaxRate / 100) * 1000
-        'strTaxRate = dblTaxRate.ToString
-        'lbl12.Text = strTaxRate
-
-
-
+        Double.TryParse(strTaxRate, dblTaxRate)
+        dblTaxRate = (dblTaxRate / 100) * 1000
+        strTaxRate = dblTaxRate.ToString
+        lbl12.Text = strTaxRate
 
         '13 Like
 
