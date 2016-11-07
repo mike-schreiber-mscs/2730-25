@@ -30,10 +30,28 @@ Public Class Form1
     Private Sub DisplayColor(ByVal itemNum As String)
         ' lstColors.Items.Add(itemNum)
         'Adds the color based on item number
+
         If itemNum.Length = 7 Then
 
+            Select Case itemNum.Substring(3, 1).ToUpper
+                Case "B"
+                    lstColors.Items.Add(itemNum & ": Blue")
 
-            lstColors.Items.Add("invalid")
+                Case "G"
+                    lstColors.Items.Add(itemNum & ": Green")
+
+                Case "R"
+                    lstColors.Items.Add(itemNum & ": Red")
+
+                Case "W"
+                    lstColors.Items.Add(itemNum & ": White")
+
+                Case Else
+                    lstColors.Items.Add("invalid" & itemNum)
+
+            End Select
+        Else
+            lstColors.Items.Add("invalid" & itemNum)
         End If
     End Sub
 
