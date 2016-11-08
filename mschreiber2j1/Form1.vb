@@ -73,7 +73,34 @@ Public Class Form1
     End Sub
 
     Private Sub DisplayDelivery(ByVal partNum As String)
-        lstDelivery.Items.Add("Mail - Standard")
+        'lstDelivery.Items.Add("Mail - Standard")
+        'this will display thedelivery method based on two letters in a shipping code
+
+        If partNum.Length >= 3 AndAlso partNum.Length <= 4 AndAlso partNum.Substring(0, 2).ToUpper Like "##" Then
+
+            Select Case partNum.Substring(2).ToUpper
+                Case "MS"
+                    lstDelivery.Items.Add("Mail - Standard")
+
+                Case "MP"
+                    lstDelivery.Items.Add("Mail - Priority")
+
+                Case "FS"
+                    lstDelivery.Items.Add("Fedex - Standard")
+
+                Case "FO"
+                    lstDelivery.Items.Add("FedEx - Overnight")
+
+                Case "U"
+                    lstDelivery.Items.Add("UPS")
+
+                Case Else
+                    lstDelivery.Items.Add("Invalid: " & partNum)
+
+            End Select
+        Else
+            lstDelivery.Items.Add("Invalid: " & partNum)
+        End If
     End Sub
 
     Private Sub PartNum_TextChanged(sender As Object, e As EventArgs) _
@@ -90,6 +117,17 @@ Public Class Form1
     '6) Repeat steps 2 - 4 to remove/insert first letter of last name
 
     Private Sub btnProper_Click(sender As Object, e As EventArgs) Handles btnProper.Click
+        'displays the first and last name with proper case
+
+        Dim strName As String = txtName.Text.ToUpper
+        Dim strFirstChar As String = strName.Substring(0, 1).ToUpper
+        strName = strName.Remove(0, 1)
+        strName = strName.Insert(0, strFirstChar)
+        Dim intIndex As Integer = strName.IndexOf(" "c) + 1
+        strFirstChar = strName.Substring(intIndex, 1).ToUpper
+        strName = strName.Remove(intIndex, 1)
+        strName = strName.Insert(intIndex, strFirstChar)
+        lblName.Text = strName
 
     End Sub
 
