@@ -74,7 +74,7 @@ Public Class Form1
 
     Private Sub DisplayDelivery(ByVal partNum As String)
         'lstDelivery.Items.Add("Mail - Standard")
-        'this will display thedelivery method based on two letters in a shipping code
+        'this will display the delivery method based on two letters in a shipping code
 
         If partNum.Length >= 3 AndAlso partNum.Length <= 4 AndAlso partNum.Substring(0, 2).ToUpper Like "##" Then
 
@@ -119,7 +119,7 @@ Public Class Form1
     Private Sub btnProper_Click(sender As Object, e As EventArgs) Handles btnProper.Click
         'displays the first and last name with proper case
 
-        Dim strName As String = txtName.Text.ToUpper
+        Dim strName As String = txtName.Text.ToLower
         Dim strFirstChar As String = strName.Substring(0, 1).ToUpper
         strName = strName.Remove(0, 1)
         strName = strName.Insert(0, strFirstChar)
