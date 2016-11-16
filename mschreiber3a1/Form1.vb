@@ -82,42 +82,36 @@ Public Class frmMain
         Dim intCount As Integer
         Dim dblAverage As Double
 
-        'get first sales amount
+        'sets strNum to InputBox
         strNum = InputBox(strPrompt, strTitle, "0")
 
-        'start loop andrepeat as long as input is not empty
-        'TALK TO EUGENE WHY COUNT AND AVERAGE DONT READ O NA AND 1 IF USER CLICKS CANCEL FIRST TIME MS
         Do While strNum <> String.Empty
 
-
-            'convert string to integer
             Int32.TryParse(strNum, intNum)
 
-                'display the input in the text list
-                txtBoxNum.Text = txtBoxNum.Text & intNum.ToString &
-                    ControlChars.NewLine
+            'display the input in the text list
+            txtBoxNum.Text = txtBoxNum.Text & intNum.ToString &
+                ControlChars.NewLine
 
-                'update the count
-                intCount = intCount + 1
-                intSum = intNum + intSum
+            'update the count
+            intCount = intCount + 1
+            intSum = intNum + intSum
 
-                lblCount.Text = intCount.ToString
-
-                'check to avoid dividing by 0
-                If intCount > 0 Then
-                    dblAverage = intSum / intCount
-                lblAverage.Text = dblAverage.ToString("N2")
-            Else
-                    lblAverage.Text = "NA"
-                End If
-
-        'update control variable
-        strNum = InputBox(strPrompt, strTitle, "0")
-
+            'update control variable
+            strNum = InputBox(strPrompt, strTitle, "0")
 
             'end loop
         Loop
 
+        lblCount.Text = intCount.ToString
+
+        'check to avoid dividing by 0
+        If intCount > 0 Then
+            dblAverage = intSum / intCount
+            lblAverage.Text = dblAverage.ToString("N2")
+        Else
+            lblAverage.Text = "NA"
+        End If
     End Sub
 
     Private Sub btnSumUntil_Click(sender As Object, e As EventArgs) Handles btnSumUntil.Click
@@ -137,13 +131,17 @@ Public Class frmMain
         Dim intCount As Integer
         Dim dblAverage As Double
 
-        'get first sales amount
+
         strNum = InputBox(strPrompt, strTitle, "0")
 
-        'start loop and repeat as long as input is not empty
+
+        'start loop and repeat until input is empty
         Do
+
             'convert string to integer
             Int32.TryParse(strNum, intNum)
+
+
 
             'display the input in the text list
             txtBoxNum.Text = txtBoxNum.Text & intNum.ToString &
@@ -182,6 +180,7 @@ Public Class frmMain
             "Enter a number" & ControlChars.NewLine &
             "Click Cancel or leave blank to end."
         Const strTitle As String = "Number Entry"
+        'create another const for input box counter ms
         Dim strNum As String
         Dim intNum As Integer
         Dim intSum As Integer
@@ -191,20 +190,26 @@ Public Class frmMain
         'get first sales amount
         strNum = InputBox(strPrompt, strTitle, "0")
 
-        'start loop and repeat as long as input is not empty NEED TO DO THE FOR NEXT LOOP CODE MS
+        'put  popup strCount = inputbox ms
 
-        'convert string to integer
+        'If Popup blank Then int = 0 else
+
+        'Convert String to integer
         Int32.TryParse(strNum, intNum)
 
-            'display the input in the text list
-            txtBoxNum.Text = txtBoxNum.Text & intNum.ToString &
+        'start loop and repeat as long as input is not empty NEED TO DO THE FOR NEXT LOOP CODE MS
+        'for intcounter as intger = 1 to intcount
+
+        'display the input in the text list
+        txtBoxNum.Text = txtBoxNum.Text & intNum.ToString &
                 ControlChars.NewLine
 
             'update the count
             intCount = intCount + 1
             intSum = intNum + intSum
+        'Next
 
-            lblCount.Text = intCount.ToString
+        lblCount.Text = intCount.ToString
 
             'check to avoid dividing by 0
             If intCount > 0 Then
