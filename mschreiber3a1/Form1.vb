@@ -194,35 +194,35 @@ Public Class frmMain
 
         'check for valid user input 
         If strCounter = "" Then
-            intNum = 0
+            intCount = 0
         Else
             'Convert String to integer
-            Int32.TryParse(strCounter, intCounter)
+            Int32.TryParse(strCounter, intCount)
         End If
 
-        'ask for user input
-        strNum = InputBox(strPrompt, strTitle, "0")
-
-        'check for valid user input 
-        If strNum = "" Then
-            intNum = 0
-        Else
-            'Convert String to integer
-            Int32.TryParse(strNum, intNum)
-        End If
 
         'start loop 
         For intCounter = 1 To intCount
+
+            'ask for user input
+            strNum = InputBox(strPrompt, strTitle, "0")
+
+            'check for valid user input 
+            If strNum = "" Then
+                intNum = 0
+            Else
+                'Convert String to integer
+                Int32.TryParse(strNum, intNum)
+            End If
 
             'display the input in the text list
             txtBoxNum.Text = txtBoxNum.Text & intNum.ToString &
                 ControlChars.NewLine
 
             'update the count
-            intCount = intCount + 1
+
             intSum = intNum + intSum
-            strCounter = InputBox(strPrompt2, strTitle, "0")
-            strNum = InputBox(strPrompt, strTitle, "0")
+
         Next
 
         lblCount.Text = intCount.ToString
