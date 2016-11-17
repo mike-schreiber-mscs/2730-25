@@ -180,34 +180,50 @@ Public Class frmMain
             "Enter a number" & ControlChars.NewLine &
             "Click Cancel or leave blank to end."
         Const strTitle As String = "Number Entry"
-        'create another const for input box counter ms
+        Const strPrompt2 As String = "Enter Quantity of Numbers"
+        Dim strCounter As String
         Dim strNum As String
         Dim intNum As Integer
         Dim intSum As Integer
         Dim intCount As Integer
         Dim dblAverage As Double
+        Dim intCounter As Integer
 
-        'get first sales amount
+        'first pop up to ask user for number of entries
+        strCounter = InputBox(strPrompt2)
+
+        'check for valid user input 
+        If strCounter = "" Then
+            intNum = 0
+        Else
+            'Convert String to integer
+            Int32.TryParse(strCounter, intCounter)
+        End If
+
+        'ask for user input
         strNum = InputBox(strPrompt, strTitle, "0")
 
-        'put  popup strCount = inputbox ms
+        'check for valid user input 
+        If strNum = "" Then
+            intNum = 0
+        Else
+            'Convert String to integer
+            Int32.TryParse(strNum, intNum)
+        End If
 
-        'If Popup blank Then int = 0 else
+        'start loop 
+        For intCounter = 1 To intCount
 
-        'Convert String to integer
-        Int32.TryParse(strNum, intNum)
-
-        'start loop and repeat as long as input is not empty NEED TO DO THE FOR NEXT LOOP CODE MS
-        'for intcounter as intger = 1 to intcount
-
-        'display the input in the text list
-        txtBoxNum.Text = txtBoxNum.Text & intNum.ToString &
+            'display the input in the text list
+            txtBoxNum.Text = txtBoxNum.Text & intNum.ToString &
                 ControlChars.NewLine
 
             'update the count
             intCount = intCount + 1
             intSum = intNum + intSum
-        'Next
+            strCounter = InputBox(strPrompt2, strTitle, "0")
+            strNum = InputBox(strPrompt, strTitle, "0")
+        Next
 
         lblCount.Text = intCount.ToString
 
@@ -219,8 +235,6 @@ Public Class frmMain
                 lblAverage.Text = "NA"
             End If
 
-            'update control variable
-            strNum = InputBox(strPrompt, strTitle, "0")
 
 
     End Sub
