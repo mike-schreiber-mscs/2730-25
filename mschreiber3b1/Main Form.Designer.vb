@@ -30,15 +30,15 @@ Partial Class frmMain
         Me.lstMultTable = New System.Windows.Forms.ListBox()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
-        Me.lstPrices = New System.Windows.Forms.ListBox()
-        Me.Label3 = New System.Windows.Forms.Label()
-        Me.Label4 = New System.Windows.Forms.Label()
-        Me.Label5 = New System.Windows.Forms.Label()
-        Me.Label6 = New System.Windows.Forms.Label()
-        Me.Label7 = New System.Windows.Forms.Label()
-        Me.Label8 = New System.Windows.Forms.Label()
-        Me.Label9 = New System.Windows.Forms.Label()
         Me.Button1 = New System.Windows.Forms.Button()
+        Me.lblTotal = New System.Windows.Forms.Label()
+        Me.Label9 = New System.Windows.Forms.Label()
+        Me.lblTax = New System.Windows.Forms.Label()
+        Me.Label7 = New System.Windows.Forms.Label()
+        Me.lblPreTaxTotal = New System.Windows.Forms.Label()
+        Me.Label4 = New System.Windows.Forms.Label()
+        Me.Label3 = New System.Windows.Forms.Label()
+        Me.lstPrices = New System.Windows.Forms.ListBox()
         Me.GroupBox1.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
         Me.SuspendLayout()
@@ -113,11 +113,11 @@ Partial Class frmMain
         'GroupBox2
         '
         Me.GroupBox2.Controls.Add(Me.Button1)
-        Me.GroupBox2.Controls.Add(Me.Label8)
+        Me.GroupBox2.Controls.Add(Me.lblTotal)
         Me.GroupBox2.Controls.Add(Me.Label9)
-        Me.GroupBox2.Controls.Add(Me.Label6)
+        Me.GroupBox2.Controls.Add(Me.lblTax)
         Me.GroupBox2.Controls.Add(Me.Label7)
-        Me.GroupBox2.Controls.Add(Me.Label5)
+        Me.GroupBox2.Controls.Add(Me.lblPreTaxTotal)
         Me.GroupBox2.Controls.Add(Me.Label4)
         Me.GroupBox2.Controls.Add(Me.Label3)
         Me.GroupBox2.Controls.Add(Me.lstPrices)
@@ -128,65 +128,23 @@ Partial Class frmMain
         Me.GroupBox2.TabStop = False
         Me.GroupBox2.Text = "p388 #8 Barclay Prices w/validation"
         '
-        'lstPrices
+        'Button1
         '
-        Me.lstPrices.FormattingEnabled = True
-        Me.lstPrices.ItemHeight = 20
-        Me.lstPrices.Location = New System.Drawing.Point(6, 58)
-        Me.lstPrices.Name = "lstPrices"
-        Me.lstPrices.Size = New System.Drawing.Size(97, 184)
-        Me.lstPrices.TabIndex = 0
+        Me.Button1.AutoSize = True
+        Me.Button1.Location = New System.Drawing.Point(118, 195)
+        Me.Button1.Name = "Button1"
+        Me.Button1.Size = New System.Drawing.Size(88, 30)
+        Me.Button1.TabIndex = 8
+        Me.Button1.Text = "Add"
+        Me.Button1.UseVisualStyleBackColor = True
         '
-        'Label3
+        'lblTotal
         '
-        Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(6, 38)
-        Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(50, 20)
-        Me.Label3.TabIndex = 1
-        Me.Label3.Text = "Prices:"
-        '
-        'Label4
-        '
-        Me.Label4.AutoSize = True
-        Me.Label4.Location = New System.Drawing.Point(114, 38)
-        Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(88, 20)
-        Me.Label4.TabIndex = 2
-        Me.Label4.Text = "Pretax total:"
-        '
-        'Label5
-        '
-        Me.Label5.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.Label5.Location = New System.Drawing.Point(118, 58)
-        Me.Label5.Name = "Label5"
-        Me.Label5.Size = New System.Drawing.Size(88, 20)
-        Me.Label5.TabIndex = 3
-        '
-        'Label6
-        '
-        Me.Label6.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.Label6.Location = New System.Drawing.Point(118, 108)
-        Me.Label6.Name = "Label6"
-        Me.Label6.Size = New System.Drawing.Size(88, 20)
-        Me.Label6.TabIndex = 5
-        '
-        'Label7
-        '
-        Me.Label7.AutoSize = True
-        Me.Label7.Location = New System.Drawing.Point(114, 88)
-        Me.Label7.Name = "Label7"
-        Me.Label7.Size = New System.Drawing.Size(35, 20)
-        Me.Label7.TabIndex = 4
-        Me.Label7.Text = "Tax:"
-        '
-        'Label8
-        '
-        Me.Label8.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.Label8.Location = New System.Drawing.Point(118, 158)
-        Me.Label8.Name = "Label8"
-        Me.Label8.Size = New System.Drawing.Size(88, 20)
-        Me.Label8.TabIndex = 7
+        Me.lblTotal.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.lblTotal.Location = New System.Drawing.Point(118, 158)
+        Me.lblTotal.Name = "lblTotal"
+        Me.lblTotal.Size = New System.Drawing.Size(88, 20)
+        Me.lblTotal.TabIndex = 7
         '
         'Label9
         '
@@ -197,15 +155,57 @@ Partial Class frmMain
         Me.Label9.TabIndex = 6
         Me.Label9.Text = "Total:"
         '
-        'Button1
+        'lblTax
         '
-        Me.Button1.AutoSize = True
-        Me.Button1.Location = New System.Drawing.Point(118, 195)
-        Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(88, 30)
-        Me.Button1.TabIndex = 8
-        Me.Button1.Text = "Add"
-        Me.Button1.UseVisualStyleBackColor = True
+        Me.lblTax.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.lblTax.Location = New System.Drawing.Point(118, 108)
+        Me.lblTax.Name = "lblTax"
+        Me.lblTax.Size = New System.Drawing.Size(88, 20)
+        Me.lblTax.TabIndex = 5
+        '
+        'Label7
+        '
+        Me.Label7.AutoSize = True
+        Me.Label7.Location = New System.Drawing.Point(114, 88)
+        Me.Label7.Name = "Label7"
+        Me.Label7.Size = New System.Drawing.Size(35, 20)
+        Me.Label7.TabIndex = 4
+        Me.Label7.Text = "Tax:"
+        '
+        'lblPreTaxTotal
+        '
+        Me.lblPreTaxTotal.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.lblPreTaxTotal.Location = New System.Drawing.Point(118, 58)
+        Me.lblPreTaxTotal.Name = "lblPreTaxTotal"
+        Me.lblPreTaxTotal.Size = New System.Drawing.Size(88, 20)
+        Me.lblPreTaxTotal.TabIndex = 3
+        '
+        'Label4
+        '
+        Me.Label4.AutoSize = True
+        Me.Label4.Location = New System.Drawing.Point(114, 38)
+        Me.Label4.Name = "Label4"
+        Me.Label4.Size = New System.Drawing.Size(88, 20)
+        Me.Label4.TabIndex = 2
+        Me.Label4.Text = "Pretax total:"
+        '
+        'Label3
+        '
+        Me.Label3.AutoSize = True
+        Me.Label3.Location = New System.Drawing.Point(6, 38)
+        Me.Label3.Name = "Label3"
+        Me.Label3.Size = New System.Drawing.Size(50, 20)
+        Me.Label3.TabIndex = 1
+        Me.Label3.Text = "Prices:"
+        '
+        'lstPrices
+        '
+        Me.lstPrices.FormattingEnabled = True
+        Me.lstPrices.ItemHeight = 20
+        Me.lstPrices.Location = New System.Drawing.Point(6, 58)
+        Me.lstPrices.Name = "lstPrices"
+        Me.lstPrices.Size = New System.Drawing.Size(97, 184)
+        Me.lstPrices.TabIndex = 0
         '
         'frmMain
         '
@@ -234,11 +234,11 @@ Partial Class frmMain
     Friend WithEvents lstMultTable As ListBox
     Friend WithEvents GroupBox1 As GroupBox
     Friend WithEvents GroupBox2 As GroupBox
-    Friend WithEvents Label8 As Label
+    Friend WithEvents lblTotal As Label
     Friend WithEvents Label9 As Label
-    Friend WithEvents Label6 As Label
+    Friend WithEvents lblTax As Label
     Friend WithEvents Label7 As Label
-    Friend WithEvents Label5 As Label
+    Friend WithEvents lblPreTaxTotal As Label
     Friend WithEvents Label4 As Label
     Friend WithEvents Label3 As Label
     Friend WithEvents lstPrices As ListBox
