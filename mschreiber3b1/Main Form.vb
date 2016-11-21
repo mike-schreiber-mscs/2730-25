@@ -115,16 +115,21 @@ Public Class frmMain
         Dim dblPrice As Double
         Dim dblPreTaxTotal As Double
         Dim dblTotalPrice As Double
+        Dim blnIsValidNumeric As Boolean
+        Dim dblRangeHi As Double = 9.99
+        Dim dblRangeLow As Double = 1
 
         'USE THIS INPUT BOX TO STORE STRPRICE
         strPrice = InputBox(strPrice, strTitleValid, "0")
         Double.TryParse(strPrice, dblPrice)
 
-        'CANNOT GET THIS TO WORK NEEDS TO LOOP UNTIL NO LONGER INVALID HHHHHHHHHEEEEEEEEEELLLLLLLLLLLPPPPPPP
-        For dblPrice = 1 To 9.99
-            strPrice = InputBox(strPrice, strTitleInvalid, "0")
+        'CHECK CALCULATIONS AND LOOP INPUT BOX FOR CORRECT BEHAVIOR
+        Do While dblPrice < 1 OrElse dblPrice > 9.99
+
+            strPrice = InputBox(strPrice, strTitleInvalid, "")
             Double.TryParse(strPrice, dblPrice)
-        Next
+        Loop
+
 
         'ADDS NEW USER ENTERED PRICE TO LISTBOX
         lstPrices.Items.Add(dblPrice.ToString("N2"))
