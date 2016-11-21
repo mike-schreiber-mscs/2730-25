@@ -80,6 +80,7 @@ Public Class frmMain
         Dim dblSelectedPrice As Double
         Dim dblTotalPrice As Double
         Dim dblPreTaxTotal As Double = 0
+        Dim dblTaxAmount As Double
 
         'LOOPS AND loads data into listbox 1 THRU 4
         For intLoadNum As Integer = 1 To 4
@@ -97,27 +98,27 @@ Public Class frmMain
 
         'CALCULATES PRETAX TOTAL, TAX, TOTAL PRICE
         lblPreTaxTotal.Text = dblPreTaxTotal.ToString("N2")
-        lblTax.Text = (dblPreTaxTotal * dblTaxRate).ToString("N2")
-        dblTotalPrice = dblTaxRate + dblPreTaxTotal
+        dblTaxAmount = (dblPreTaxTotal * dblTaxRate)
+        lblTax.Text = (dblTaxAmount + dblPreTaxTotal).ToString("C2")
+        dblTotalPrice = dblTaxAmount + dblPreTaxTotal
         lblTotal.Text = dblTotalPrice.ToString("C2")
         lstPrices.SelectedIndex = -1
     End Sub
-    'WORKS UP TO HERE!!!!!!
-
-
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
         'adds another value to be calculated in the list prices
         Dim strPrice As String = "Enter a Price" & ControlChars.NewLine &
+            "Valid prices: 1.00 to 9.99"
+        Dim strPrice2 As String = "Enter a Price" & ControlChars.NewLine &
             "Valid prices: 1.00 to 9.99"
         Dim strTitleValid As String = "Price Entry"
         Dim strTitleInvalid As String = "Invalid Price"
         Dim dblPrice As Double
         Dim dblPreTaxTotal As Double
         Dim dblTotalPrice As Double
-        Dim blnIsValidNumeric As Boolean
-        Dim dblRangeHi As Double = 9.99
-        Dim dblRangeLow As Double = 1
+        Dim strSelectedItem As String
+        Dim dblSelectedPrice As Double
+        Dim dblTaxAmount As Double
 
         'USE THIS INPUT BOX TO STORE STRPRICE
         strPrice = InputBox(strPrice, strTitleValid, "0")
@@ -125,26 +126,62 @@ Public Class frmMain
 
         'CHECK CALCULATIONS AND LOOP INPUT BOX FOR CORRECT BEHAVIOR
         Do While dblPrice < 1 OrElse dblPrice > 9.99
-
-            strPrice = InputBox(strPrice, strTitleInvalid, "")
+            strPrice = InputBox(strPrice2, strTitleInvalid, "0")
             Double.TryParse(strPrice, dblPrice)
         Loop
-
 
         'ADDS NEW USER ENTERED PRICE TO LISTBOX
         lstPrices.Items.Add(dblPrice.ToString("N2"))
 
+        'LOOPS TO ADD PRICES IN LIST BOX FOR PRETAX TOTAL
+        For intIndex As Integer = 0 To lstPrices.Items.Count - 1
+            lstPrices.SelectedIndex = intIndex
+            strSelectedItem = lstPrices.SelectedItem.ToString()
+            Double.TryParse(strSelectedItem.ToString, dblSelectedPrice)
+            dblPreTaxTotal = dblSelectedPrice + dblPreTaxTotal
+        Next
+
         'CALCULATES PRETAX TOTAL, TAX, TOTAL PRICE
         lblPreTaxTotal.Text = dblPreTaxTotal.ToString("N2")
-        lblTax.Text = (dblPreTaxTotal * dblTaxRate).ToString("N2")
-        dblTotalPrice = dblTaxRate + dblPreTaxTotal
+        dblTaxAmount = (dblPreTaxTotal * dblTaxRate)
+        lblTax.Text = (dblTaxAmount + dblPreTaxTotal).ToString("C2")
+        dblTotalPrice = dblTaxAmount + dblPreTaxTotal
         lblTotal.Text = dblTotalPrice.ToString("C2")
         lstPrices.SelectedIndex = -1
     End Sub
 
     Private Sub lstPrices_KeyDown(sender As Object, e As KeyEventArgs) Handles lstPrices.KeyDown
-        'ALLOWS PRICE ITEMS TO BE REMOVED FROM LIST BOX NEED TO DO THIS TOO HHHHHHHHHEEEEEEEEEELLLLLLLLLLLPPPPPPP
+        'ALLOWS PRICE ITEMS TO BE REMOVED FROM LIST BOX 
+        Dim intCurIndex As Integer
+        Dim strSelectedItem As String
+        Dim dblSelectedPrice As Double
+        Dim dblPreTaxTotal As Double
+        Dim dblTotalPrice As Double
+        Dim dblTaxAmount As Double
+
+        If e.KeyData = Keys.Back OrElse e.KeyData = Keys.Delete Then
+            intCurIndex = lstPrices.SelectedIndex
+            lstPrices.Items.Remove(lstPrices.SelectedItem)
+
+            'LOOPS TO ADD PRICES IN LIST BOX FOR PRETAX TOTAL
+            For intIndex As Integer = 0 To lstPrices.Items.Count - 1
+                lstPrices.SelectedIndex = intIndex
+                strSelectedItem = lstPrices.SelectedItem.ToString()
+                Double.TryParse(strSelectedItem.ToString, dblSelectedPrice)
+                dblPreTaxTotal = dblSelectedPrice + dblPreTaxTotal
+            Next
+
+            'CALCULATES PRETAX TOTAL, TAX, TOTAL PRICE
+            lblPreTaxTotal.Text = dblPreTaxTotal.ToString("N2")
+            dblTaxAmount = (dblPreTaxTotal * dblTaxRate)
+            lblTax.Text = (dblTaxAmount + dblPreTaxTotal).ToString("C2")
+            dblTotalPrice = dblTaxAmount + dblPreTaxTotal
+            lblTotal.Text = dblTotalPrice.ToString("C2")
+            lstPrices.SelectedIndex = -1
+
+        Else
 
 
+        End If
     End Sub
 End Class
