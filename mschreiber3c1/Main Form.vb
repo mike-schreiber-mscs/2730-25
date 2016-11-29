@@ -35,6 +35,63 @@ Public Class frmMain
         Return dblResult
     End Function
 
+    'calculates earth weight on selected planet using a sub procedure
+    Private Sub CalcWeightSub(ByVal intWeight As Integer,
+                              ByRef dblWeight As Double)
+        'do some calculations here
+        Dim dblGravity As Double
+
+        Select Case cboPlanets.Text
+            Case "Mercury", "Mars"
+                dblGravity = 0.38
+            Case "Venus"
+                dblGravity = 0.91
+            Case "Earth"
+                dblGravity = 1
+            Case "Jupiter"
+                dblGravity = 2.34
+            Case "Saturn"
+                dblGravity = 1.06
+            Case "Uranus"
+                dblGravity = 0.92
+            Case "Neptune"
+                dblGravity = 1.14
+            Case "Pluto"
+                dblGravity = 0.06
+        End Select
+
+        dblWeight = intWeight * dblGravity
+    End Sub
+
+    'calculates earth weight on selected planet using a function
+    Private Function CalcWeightFunc(ByVal intEarthWeight As Integer) As Double
+
+
+        Dim dblGravity As Double
+
+        Select Case cboPlanets.Text
+            Case "Mercury", "Mars"
+                dblGravity = 0.38
+            Case "Venus"
+                dblGravity = 0.91
+            Case "Earth"
+                dblGravity = 1
+            Case "Jupiter"
+                dblGravity = 2.34
+            Case "Saturn"
+                dblGravity = 1.06
+            Case "Uranus"
+                dblGravity = 0.92
+            Case "Neptune"
+                dblGravity = 1.14
+            Case "Pluto"
+                dblGravity = 0.06
+        End Select
+
+        Dim dblWeight As Double = intEarthWeight * dblGravity
+
+        Return dblWeight
+    End Function
 
     Private Sub btnExit_Click(sender As Object, e As EventArgs) Handles btnExit.Click
         Me.Close()
@@ -59,7 +116,7 @@ Public Class frmMain
         Dim dblMeasurement As Double = 0.0
         Dim dblResult As Double = 0.0
 
-        'txtMeasurement.Text = dblMeasurement.ToString("n2")
+
         Double.TryParse(txtMeasurement.Text, dblMeasurement)
 
 
@@ -86,6 +143,56 @@ Public Class frmMain
     Private Sub frmMain_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         'uses 10.00 for the initial value for txtMeasreument.text
         txtMeasurement.Text = "10.00"
+
+        'loads planets to cboPlanets
+        cboPlanets.Items.Add("Mercury")
+        cboPlanets.Items.Add("Mars")
+        cboPlanets.Items.Add("Venus")
+        cboPlanets.Items.Add("Earth")
+        cboPlanets.Items.Add("Jupiter")
+        cboPlanets.Items.Add("Saturn")
+        cboPlanets.Items.Add("Uranus")
+        cboPlanets.Items.Add("Neptune")
+        cboPlanets.Items.Add("Pluto")
+        cboPlanets.SelectedItem = "Earth"
+        txtWeight.Text = "100"
+    End Sub
+
+    Private Sub txtWeight_KeyPress(sender As Object, e As KeyPressEventArgs) Handles txtWeight.KeyPress
+        ' allow only numbers, the period, and the Backspace key
+
+        If (e.KeyChar < "0" OrElse e.KeyChar > "9") AndAlso e.KeyChar <> "." AndAlso e.KeyChar <> ControlChars.Back Then
+            e.Handled = True
+        End If
+    End Sub
+
+    Private Sub txtWeight_Enter(sender As Object, e As EventArgs) Handles txtWeight.Enter
+        'selects all the text 
+
+        txtWeight.SelectAll()
+    End Sub
+
+    Private Sub InputsChanged(sender As Object, e As EventArgs) _
+        Handles txtWeight.TextChanged, cboPlanets.SelectedIndexChanged,
+        radFunc.CheckedChanged, radSub.CheckedChanged
+
+        Dim intEarthWeight As Integer
+        Dim dblWeight As Double
+
+        Integer.TryParse(txtWeight.Text, intEarthWeight)
+
+        If radSub.Checked Then
+            CalcWeightSub(intEarthWeight, dblWeight)
+
+        ElseIf radFunc.Checked Then
+            dblWeight = CalcWeightFunc(intEarthWeight)
+        End If
+
+        'displays the converted result
+        lblCalculatedWeight.Text = dblWeight.ToString("n2")
     End Sub
 End Class
+
+
+
 
