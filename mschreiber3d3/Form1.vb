@@ -137,20 +137,19 @@ Public Class Form1
             intSub1 += 1
         Loop
 
+
         'calculate average and display it
         dblAverage = intTotal / intSold.Length
         lblAvg.Text = dblAverage.ToString("N2")
 
 
         'find array values that are < average value using loop and if statement
-        'NEED HELP HERE.. INTSUB1 STILL = 4 SO DO WHILE IS SKIPPED MS
+        intSub1 = 0
         Do While intSub1 <= intHighSub
-            intTotal += intSold(intSub1)
-            intSub1 += 1
-
             If intSold(intSub1) < dblAverage Then
                 lblLessThanAvg.Text &= intSold(intSub1).ToString & ", "
             End If
+            intSub1 += 1
         Loop
 
         If lblLessThanAvg.Text.EndsWith(", ") Then
@@ -196,5 +195,5 @@ End Class
 
 
 
-'Line 146 Do..Loop need to figure out why sub1 = 4 when entering 2nd loop for less than average lbl
+
 'Line 173 How to take care of non numeric entries in lst Retail inout box
