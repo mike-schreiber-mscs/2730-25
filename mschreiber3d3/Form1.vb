@@ -177,7 +177,7 @@ Public Class Form1
 
         For Each dblSub In dblWholesale
             dblRetail = dblSub * dblMarkupRate + dblSub
-            lstRetail.Items.Add(dblRetail.ToString("N2"))
+            lstRetail.Items.Add(dblRetail.ToString("N2").PadLeft(6))
 
 
 
@@ -191,6 +191,7 @@ Public Class Form1
         For intSub As Integer = 0 To dblWholesale.GetUpperBound(0)
             dblWholesale(intSub) = Convert.ToDouble(lstWholesale.Items(intSub))
         Next intSub
+
         lstRetail.Items.Clear()
     End Sub
 
