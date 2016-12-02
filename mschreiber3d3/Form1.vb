@@ -165,11 +165,12 @@ Public Class Form1
         Const strTitle As String = "Enter Markup Rate"
         Dim strInput As String
         Dim dblMarkupRate As Double
-        Dim dblSub As Integer
+        Dim dblSub As Double
         Dim dblRetail As Double
 
 
         strInput = InputBox(strPrompt, strTitle, "50")
+
 
         Double.TryParse(strInput, dblMarkupRate)
         dblMarkupRate = dblMarkupRate / 100
@@ -177,6 +178,9 @@ Public Class Form1
         For Each dblSub In dblWholesale
             dblRetail = dblSub * dblMarkupRate + dblSub
             lstRetail.Items.Add(dblRetail.ToString("N2"))
+
+
+
 
         Next
     End Sub
@@ -196,4 +200,6 @@ End Class
 
 
 
-'Line 173 How to take care of non numeric entries in lst Retail inout box
+
+
+
