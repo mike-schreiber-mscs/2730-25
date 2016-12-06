@@ -32,6 +32,7 @@ Public Class Form1
     'form load calls DisplayCommissions sub procedure
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         DisplayCommissions()
+        cboSearchValue.SelectedIndex = 0
     End Sub
 
     'calculates the count value by interating thru the intcommissions value array and compares search value to 
@@ -53,7 +54,14 @@ Public Class Form1
         Return intMatchCount
     End Function
 
-    'text changed event Does not work. Returns 1.  NEED TO FIX FUNCTION AND RERUN
+    Private Function CountRange(intSearchMin As Integer, intSearchMax As Integer) As Integer
+        'add a for loop that checks to see if the current array element is greater than intSearch Min and less than intSearch Max See Func Count Value above
+
+    End Function
+
+
+
+
     Private Sub cboSearchValue_TextChanged(sender As Object, e As EventArgs) Handles cboSearchValue.TextChanged
         Dim strInput As String = cboSearchValue.Text
         Dim intSearchValue As Integer
@@ -72,5 +80,23 @@ Public Class Form1
         End If
     End Sub
 
+    Private Sub cboSearchRange_TextChanged(sender As Object, e As EventArgs) Handles cboSearchRange.TextChanged
+        lblSearchRangeCount.Text = String.Empty
+        Dim intSearchMin As Integer = 0
+        Dim intSearchMax As Integer = 0
+        Dim intHyphenIndex As Integer = cboSearchRange.Text.IndexOf("-")
+        If intHyphenIndex >= 0 AndAlso cboSearchRange.Text.Length > intHyphenIndex + 1 Then
+            Dim strSearchMin As String =
+                cboSearchRange.Text.Substring(0, intHyphenIndex).Trim()
+            Dim strSearchMax As String =
+                cboSearchRange.Text.Substring(intHyphenIndex + 1).Trim()
+            Int32.TryParse(strSearchMin, intSearchMin)
+            Int32.TryParse(strSearchMax, intSearchMax)
+            If intSearchMax >= intSearchMin Then
+                lblSearchRangeCount.Text = CountRange(intSearchMin, intSearchMax).ToString
+            End If
+        End If
+
+    End Sub
 End Class
 
