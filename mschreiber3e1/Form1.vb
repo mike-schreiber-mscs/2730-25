@@ -38,19 +38,17 @@ Public Class Form1
     'each array element  Then increments the counter by 1 each time a match happens
 
     Private Function CountValue(ByVal intSearchValue As Integer) As Integer
-        Dim intCount1 As Integer
+
         Dim intCount2 As Integer
         Dim intMatchCount As Integer
+        Dim intsub1 As Integer
 
-        Do While intCount2 <= intCommission.GetUpperBound(0)
-            'THIS IS NOT CORRECT... NEED SOMETHING IN HERE TO ASSIGN EACH ARRAY ELEMENT BEFORE COMPARING
-            If intSearchValue = intCommission(intCount1) Then
+        For intCount2 = 0 To intCommission.Length - 1
+            intsub1 = intCommission(intCount2)
+            If intsub1 = intSearchValue Then
                 intMatchCount += 1
-            Else
-                intMatchCount = 1
             End If
-            intCount2 += 1
-        Loop
+        Next intCount2
 
         Return intMatchCount
     End Function
@@ -59,14 +57,14 @@ Public Class Form1
     Private Sub cboSearchValue_TextChanged(sender As Object, e As EventArgs) Handles cboSearchValue.TextChanged
         Dim strInput As String = cboSearchValue.Text
         Dim intSearchValue As Integer
-        Dim intCount As Integer
+
 
         'converts user input or comboBox selection into an integer
         Integer.TryParse(strInput, intSearchValue)
 
         'Checks for valid user input and if so... calls the CountValue Function otherwise it shows a message to user
         If intSearchValue >= 0 AndAlso intSearchValue <= 1000 Then
-            lblSearchCount.Text = CountValue(intCount).ToString
+            lblSearchCount.Text = CountValue(intSearchValue).ToString
 
         Else
             MessageBox.Show("Please enter an integer between 0 and 1000", "Invalid Entry",
