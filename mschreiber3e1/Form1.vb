@@ -11,7 +11,7 @@ Public Class Form1
 
     'array to populate commission values
     Private intCommission() As Integer = {300, 500, 200, 150, 600, 750,
-           90, 150, 100, 200, 250, 650, 300, 750, 800, 350, 250, 150, 100, 300}
+           900, 150, 100, 200, 250, 650, 300, 750, 800, 350, 250, 150, 100, 300}
 
     'sub procedure that iterates thru the intcommission array and populates the lbl with values
 
@@ -33,6 +33,7 @@ Public Class Form1
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         DisplayCommissions()
         cboSearchValue.SelectedIndex = 0
+        cboSearchRange.SelectedIndex = 0
     End Sub
 
     'calculates the count value by interating thru the intcommissions value array and compares search value to 
@@ -56,7 +57,18 @@ Public Class Form1
 
     Private Function CountRange(intSearchMin As Integer, intSearchMax As Integer) As Integer
         'add a for loop that checks to see if the current array element is greater than intSearch Min and less than intSearch Max See Func Count Value above
+        Dim intSub2 As Integer
+        Dim intSub3 As Integer
+        Dim intInRange As Integer = 0
 
+
+        For intSub2 = 0 To intCommission.Length - 1
+            intSub3 = intCommission(intSub2)
+            If intSub3 >= intSearchMin AndAlso intSub3 <= intSearchMax Then
+                intInRange += 1
+            End If
+        Next
+        Return intInRange
     End Function
 
 
@@ -65,7 +77,6 @@ Public Class Form1
     Private Sub cboSearchValue_TextChanged(sender As Object, e As EventArgs) Handles cboSearchValue.TextChanged
         Dim strInput As String = cboSearchValue.Text
         Dim intSearchValue As Integer
-
 
         'converts user input or comboBox selection into an integer
         Integer.TryParse(strInput, intSearchValue)
